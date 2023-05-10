@@ -1,0 +1,118 @@
+<mvc:View controllerName="com.example.salesorder.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    height="100%"
+	xmlns:m="sap.m"
+  xmlns:t="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	xmlns:semantic="sap.f.semantic"  
+    >
+    <semantic:SemanticPage
+		id="mySemanticPage"
+		headerPinnable="true"
+		toggleHeaderOnTitleClick="true"
+		preserveHeaderStateOnScroll="false"
+		titleAreaShrinkRatio="1:1.6:1.6"
+		showFooter="{/showFooter}">
+		<semantic:titleHeading>
+			<Title text="Sales Order" />
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<layout:HorizontalLayout >
+			<HBox width="900px">
+					<SearchField width="300px"  />
+					<MultiInput         class="sapUiSmallMarginBeginEnd" 
+										placeholder="Date Range"
+										showSuggestion="true"
+										suggestionItems="{/}"
+										>
+								<suggestionItems>
+									<core:ListItem
+											key="{key}"
+											text="{
+												path : 'text',
+												formatter : '.whitespace2Char'
+											}"
+											additionalText="{
+												path : 'additionalText',
+												formatter : '.whitespace2Char'
+											}"/>
+								</suggestionItems>
+					</MultiInput>
+					<MultiInput placeholder="Import Number"
+					class="sapUiMediumMarginBegin" 
+										showSuggestion="true"
+										suggestionItems="{/}">
+								<suggestionItems>
+									<core:ListItem
+											key="{key}"
+											text="{
+												path : 'text',
+												formatter : '.whitespace2Char'
+											}"
+											additionalText="{
+												path : 'additionalText',
+												formatter : '.whitespace2Char'
+											}"/>
+								</suggestionItems>
+							</MultiInput> 
+							</HBox>
+			</layout:HorizontalLayout>
+		</semantic:headerContent>
+		<semantic:content>
+				<t:TreeTable
+                    id="TreeTableBasic"
+                    rows="{path: 'app>/REQUEST_LIST'}"
+                    
+                    enableSelectAll="false"
+                    ariaLabelledBy="title">
+                
+                <t:columns>
+                    <t:Column width="13rem">
+                        <m:Label text="Sales Order"/>
+                        <t:template>
+                            <m:Text text="{app>salesOrder}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="9rem">
+                        <m:Label text="Creation Status"/>
+                        <t:template>
+                            <m:Text text="{app>creationStatus}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="11rem">
+                        <m:Label text="Log"/>
+                        <t:template>
+                            <m:Text text="{app>log}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+					<t:Column width="13rem">
+                        <m:Label text="Sales Order Type"/>
+                        <t:template>
+                            <m:Text text="{app>soType}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="9rem">
+                        <m:Label text="Sales Order (Temporary ID)"/>
+                        <t:template>
+                            <m:Text text="{app>tempId}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+					<t:Column width="9rem">
+                        <m:Label text="Created By"/>
+                        <t:template>
+                            <m:Text text="{app>createdBy}" wrapping="false" />
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:TreeTable>
+		</semantic:content>
+		<semantic:titleMainAction>
+			<semantic:TitleMainAction text="GO" press="split"/>
+		</semantic:titleMainAction>
+		<semantic:titleCustomTextActions>
+			<Button text="Adapt Filters" press="adaptFilters"/>
+		</semantic:titleCustomTextActions>
+	</semantic:SemanticPage>
+</mvc:View>

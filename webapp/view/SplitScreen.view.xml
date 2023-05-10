@@ -1,0 +1,233 @@
+<mvc:View
+	controllerName="com.example.salesorder.controller.SplitScreen"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<SplitApp
+	width="100%"
+		id="SplitAppDemo"
+		initialDetail="detail"
+		initialMaster="master">
+		<detailPages width="60%" >
+			<Page
+				id="detail"
+				title="001"
+				backgroundDesign= "Solid">
+			<content class="sapUiLargePaddingBeginEnd" >
+				<Table
+					class="sapUiLargeMarginTop"
+					id="idPreviewTable"
+					inset="false">
+						<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title text="Preview(Item Data)" level="H1"/>
+										<ToolbarSpacer />
+										
+										<ToggleButton id="toggleInfoToolbar1"
+											text="Hide/Show Detail"
+											press="onToggleInfoToolbar" />
+
+								<core:Icon
+										src="sap-icon://action-settings"
+										class="size1"
+										color="#0000ff" >
+										<core:layoutData>
+											<FlexItemData growFactor="1" />
+										</core:layoutData>
+								</core:Icon>
+										</content>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="Item (Temporary ID)" />
+									</Column>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="Product" />
+									</Column>
+									<Column
+										minScreenWidth="Desktop"
+										demandPopin="true"
+										hAlign="End">
+										<Text text="Requested Quantity" />
+									</Column>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="Requested Qty Unit" />
+									</Column>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="PPRO Condition Amount" />
+									</Column>
+									<Column
+										minScreenWidth="Desktop"
+										demandPopin="true"
+										hAlign="End">
+										<Text text="YK07 Condition Ratio" />
+									</Column>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="PMPO Condition Amount" />
+									</Column>
+								
+								</columns>
+								<items>
+					<ColumnListItem vAlign="Middle"   type="Active"   press="onpressitem">
+						<cells   >
+							<Text text="10" />
+							<Text text="TG12" />
+							<Text text="10"  />
+							<Text text="" />
+							<Text text="100" />
+							<Text text="-20%" />
+							<Text text="200" />
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem vAlign="Middle"   type="Active"   press="onpressitem">
+						<cells>
+							<Text text="20" />
+							<Text text="TG13" />
+							<Text text="15"  />
+							<Text text="" />
+							<Text text="" />
+							<Text text="-10%" />
+							<Text text="1000" />
+						</cells>
+					</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+			</Page>
+			<Page
+				id="detailDetail"
+				title="Detail Detail"
+				backgroundDesign= "Solid"
+				showNavButton="true"
+				navButtonPress=".onPressDetailBack">
+				<VBox class="sapUiSmallMargin">
+					<Label text="This is Detail Page2" />
+					
+				</VBox>
+			</Page>
+			<Page
+				id="detail2"
+				title="Detail 3 Page"
+				backgroundDesign= "Solid"
+				showNavButton="true"
+				navButtonPress=".onPressDetailBack">
+				<Label text="This is Detail Page3" />
+			</Page>
+		</detailPages>
+		<masterPages width="40%">
+			<Page
+				id="master"
+				title="Create Sales Orders from Your File"
+				backgroundDesign= "List">
+						    <content>
+								<VBox class="sapUiLargeMarginTop " >
+								<Label text="Import Name :" class="sapUiSmallMarginBegin " />
+								<u:FileUploader
+								class="sapUiSmallMarginBegin "
+								id="fileUploader"
+								name="myFileUpload"
+								uploadUrl="upload/"
+								tooltip="Upload your file to the local server"
+								uploadComplete="handleUploadComplete"/>
+								</VBox>
+                            </content>
+
+							<content>
+							<Table
+							class="sapUiLargeMarginTop"
+							id="idProductsTable"
+							inset="false">
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title text="Preview(Order Data)" level="H1"/>
+										<ToolbarSpacer />
+										
+										<ToggleButton id="toggleInfoToolbar"
+											text="Hide/Show Detail"
+											press="onToggleInfoToolbar" />
+
+								<core:Icon
+										src="sap-icon://action-settings"
+										class="size1"
+										color="#0000ff" >
+										<core:layoutData>
+											<FlexItemData growFactor="1" />
+										</core:layoutData>
+								</core:Icon>
+										</content>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="Sales Order (Temporary ID)" />
+									</Column>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="Sales Order Type" />
+									</Column>
+									<Column
+										minScreenWidth="Desktop"
+										demandPopin="true"
+										hAlign="End">
+										<Text text="Sales Organization" />
+									</Column>
+								
+								</columns>
+								<items>
+			<ColumnListItem vAlign="Middle"   type="Active"   press="onpressitem">
+				<cells   >
+					<Text text="0001" icon="sap-icon://slim-arrow-right"/>
+                    <Text text="OR" />
+					<Text text="1710" press=".onPressGoToMaster" />
+				</cells>
+			</ColumnListItem>
+			<ColumnListItem vAlign="Middle"   type="Active"   press="onpressitem">
+				<cells>
+					<Text text="0002" icon="sap-icon://slim-arrow-right"/>
+                    <Text text="VDOR"/>
+					<Text text="1010" navButtonPress=".onPressMasterBack" />
+				</cells>
+			</ColumnListItem>
+		</items>
+
+		
+	</Table>
+							</content>
+                        
+			</Page>
+			<Page
+				id="master2"
+				title="Master 2"
+				backgroundDesign="List"
+				showNavButton="true"
+				navButtonPress=".onPressMasterBack">
+				<List itemPress=".onListItemPress">
+					<items>
+						<StandardListItem title="To Detail 1" type="Active" custom:to="detail" />
+						<StandardListItem title="To Detail 2" type="Active" custom:to="detailDetail" />
+						<StandardListItem title="To Detail 3" type="Active" custom:to="detail2" />
+					</items>
+				</List>
+				
+			</Page>
+		</masterPages>
+	</SplitApp>
+</mvc:View>
